@@ -17,6 +17,7 @@ local PlayerTab = Window:MakeTab({
 
 local PlayerSection = PlayerTab:AddSection({
 	Name = "Toggle"
+})
 
 settings = {
 autoPlay = {
