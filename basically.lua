@@ -33,7 +33,12 @@ LeftGroupBox:AddToggle('Toggle', {
 
 LeftGroupBox:AddLabel('Keybind'):AddKeyPicker('KeyPicker', {
     Default = 'Q',
-    SyncToggleState = true, 
+    SyncToggleState = true,
+    Mode = 'Toggle',
+
+    Text = 'Enables autoplayer',
+    NoUI = false,
+})
 
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Players = game:GetService("Players")
