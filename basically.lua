@@ -31,8 +31,9 @@ LeftGroupBox:AddToggle('Toggle', {
     end
 })
 
-local MyButton = LeftGroupBox:AddButton('Enables autoplayer by key', function(bool)
-end)
+LeftGroupBox:AddLabel('Keybind'):AddKeyPicker('KeyPicker', {
+    Default = 'Q',
+    SyncToggleState = true, 
 
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local Players = game:GetService("Players")
