@@ -1,19 +1,22 @@
-local repo = 'https://raw.githubusercontent.com/Skeleton19/LinoriaLib/main/'
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Skeleton19/Orion/main/source')))()
 
-local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
-local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
-
-local Window = Library:CreateWindow({
-    Title = 'Basically FNF Remix',
-    Center = true,
-    AutoShow = true,
-    TabPadding = 8,
-    MenuFadeTime = 0.2
+OrionLib:MakeNotification({
+	Name = "Autoplayer",
+	Content = "Loading...",
+	Image = "rbxassetid://4483345998",
+	Time = 5
 })
 
-local MainTab = Window:AddTab('Main')
-local LeftGroupBox = MainTab:AddLeftGroupbox('Autoplayer')
+local Window = OrionLib:MakeWindow({Name = "Autoplayer", HidePremium = false, SaveConfig = false, ConfigFolder = "Basically FNF Remix"})
+
+local PlayerTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local PlayerSection = PlayerTab:AddSection({
+	Name = "Toggle"
 
 settings = {
 autoPlay = {
@@ -21,23 +24,12 @@ enabled = false
 }
 }
 
-LeftGroupBox:AddToggle('Toggle', {
-    Text = 'Toggle',
-    Default = false,
-    Tooltip = 'Enables Autoplayer',
-
-    Callback = function(bool)
+PlayerSection:AddToggle({
+	Name = "Turn On/Off",
+	Default = false,
+	Callback = function(bool)
         settings.autoPlay.enabled = bool
-    end
-})
-
-LeftGroupBox:AddLabel('Keybind'):AddKeyPicker('KeyPicker', {
-    Default = 'Q',
-    SyncToggleState = true,
-    Mode = 'Toggle',
-
-    Text = 'Enables autoplayer',
-    NoUI = false,
+  	end    
 })
 
 local VirtualInputManager = game:GetService("VirtualInputManager")
