@@ -81,8 +81,6 @@ PlayerSection:AddToggle({
   	end    
 })
 
-PlayerSection:AddBind({Name = "Menu keybind", Default = Enum.KeyCode.End, Hold = false, Save = true, Callback = function() Toggle:Set(not Toggle.Value) end})
-OrionLib.ToggleBind = Options.MenuKeybind
 OrionLib:Init()
 
 while wait(1) do
