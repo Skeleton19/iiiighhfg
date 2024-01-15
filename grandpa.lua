@@ -385,7 +385,8 @@ while wait(1) do
 						exit.Base.BillboardGui:Destroy()
 					end
 				end
+
 			end
 		end
-	end
+	end)
 end
