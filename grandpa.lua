@@ -19,6 +19,7 @@ local PlayerTab = Window:MakeTab({
 	Name = "Main",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
 
 local PlayerSection = PlayerTab:AddSection({
 	Name = "Toggle"
