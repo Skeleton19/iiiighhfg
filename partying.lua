@@ -165,6 +165,7 @@ local function notesAdded(child)
 	if not randChance then return end
 	local realTime = t + randChance
 	last = tick()
+	if child:IsA("ImageLabel") and child.Image then
 	if child.ImageRectSize == Vector2.new(78.5, 77) and child.ImageRectOffset == Vector2.new(925, 0) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
@@ -216,6 +217,7 @@ local function notesAdded(child)
 				keyrelease(0x27) -- Right
 			end
 		end)
+		end
 	end
 end
 
