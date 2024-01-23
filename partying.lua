@@ -1,6 +1,8 @@
 local function getVers(v)
 	if type(v) ~= 'function' then return v + 0.1 else return 0 end
 end
+local keypress = keypress or syn.keypress
+local keyrelease = keyrelease or syn.keyrelease
 
 getgenv().Version = getVers(getgenv().Version)
 local version = getgenv().Version
@@ -217,7 +219,7 @@ local function notesAdded(child)
 				keyrelease(0x27) -- Right
 			end
 		end)
-	function keypress(key)
+		 function keypress(key)
  	local input = Instance.new("InputObjectEvent")
   	input.UserInputType = Enum.UserInputType.Keyboard
   	input.KeyCode = Enum.KeyCode[key]
@@ -228,6 +230,8 @@ local function notesAdded(child)
   	input.UserInputType = Enum.UserInputType.Keyboard
 	input.KeyCode = Enum.KeyCode[key]
 	game:GetService("UserInputService").InputEnded:Fire(input)
+		end
+		end
 	end
 end
 
