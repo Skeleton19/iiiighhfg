@@ -217,7 +217,17 @@ local function notesAdded(child)
 				keyrelease(0x27) -- Right
 			end
 		end)
-		end
+	function keypress(key)
+ 	local input = Instance.new("InputObjectEvent")
+  	input.UserInputType = Enum.UserInputType.Keyboard
+  	input.KeyCode = Enum.KeyCode[key]
+ 	game:GetService("UserInputService").InputBegan:Fire(input)
+	end
+	function keyrelease(key)
+  	local input = Instance.new("InputObjectEvent")
+  	input.UserInputType = Enum.UserInputType.Keyboard
+	input.KeyCode = Enum.KeyCode[key]
+	game:GetService("UserInputService").InputEnded:Fire(input)
 	end
 end
 
