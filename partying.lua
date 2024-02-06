@@ -1,8 +1,6 @@
 local function getVers(v)
 	if type(v) ~= 'function' then return v + 0.1 else return 0 end
 end
-local keypress = keypress or syn.keypress
-local keyrelease = keyrelease or syn.keyrelease
 
 getgenv().Version = getVers(getgenv().Version)
 local version = getgenv().Version
@@ -142,7 +140,7 @@ end
 local function getChances(mod)
 	local total = sum(chances)
 	local rand = math.random(0, total)
-	
+
 	if rand <= chances[1] then
 		return -0.03
 	elseif rand <= chances[1]+chances[2] then
@@ -152,7 +150,7 @@ local function getChances(mod)
 	else
 		return nil
 	end
-	
+
 end
 
 local function notesAdded(child)
@@ -167,7 +165,6 @@ local function notesAdded(child)
 	if not randChance then return end
 	local realTime = t + randChance
 	last = tick()
-	if child:IsA("ImageLabel") and child.Image then
 	if child.ImageRectSize == Vector2.new(78.5, 77) and child.ImageRectOffset == Vector2.new(925, 0) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
@@ -219,19 +216,6 @@ local function notesAdded(child)
 				keyrelease(0x27) -- Right
 			end
 		end)
-		 function keypress(key)
- 	local input = Instance.new("InputObjectEvent")
-  	input.UserInputType = Enum.UserInputType.Keyboard
-  	input.KeyCode = Enum.KeyCode[key]
- 	game:GetService("UserInputService").InputBegan:Fire(input)
-	end
-	function keyrelease(key)
-  	local input = Instance.new("InputObjectEvent")
-  	input.UserInputType = Enum.UserInputType.Keyboard
-	input.KeyCode = Enum.KeyCode[key]
-	game:GetService("UserInputService").InputEnded:Fire(input)
-		end
-		end
 	end
 end
 
