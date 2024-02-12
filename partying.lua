@@ -165,7 +165,7 @@ local function notesAdded(child)
 	if not randChance then return end
 	local realTime = t + randChance
 	last = tick()
-	if child.ImageRectSize == Vector2.new(78.5, 77) and child.ImageRectOffset == Vector2.new(925, 0) then
+	if child.ImageRectSize == Vector2.new(78.5, 77) and child.ImageRectOffset == Vector2.new(81, 120) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
 				task.wait((child.Position.Y.Scale-0.069)/distancePerSecond)
@@ -177,7 +177,7 @@ local function notesAdded(child)
 				keyrelease(0x26) -- Up
 			end
 		end)
-	elseif child.ImageRectSize == Vector2.new(78.5, 77) and child.ImageRectOffset == Vector2.new(925, 77) then
+	elseif child.ImageRectSize == Vector2.new(79, 77) and child.ImageRectOffset == Vector2.new(0, 120) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
 				task.wait((child.Position.Y.Scale-0.069)/distancePerSecond)
@@ -190,7 +190,7 @@ local function notesAdded(child)
 				keyrelease(0x28)-- Down
 			end
 		end)
-	elseif child.ImageRectSize == Vector2.new(77, 78.5) and child.ImageRectOffset == Vector2.new(315, 116) then
+	elseif child.ImageRectSize == Vector2.new(77, 78.5) and child.ImageRectOffset == Vector2.new(0, 199) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
 				task.wait((child.Position.Y.Scale-0.069)/distancePerSecond)
@@ -203,7 +203,7 @@ local function notesAdded(child)
 				keyrelease(0x25) -- Left 
 			end
 		end)
-	elseif child.ImageRectSize == Vector2.new(77, 78.5) and child.ImageRectOffset == Vector2.new(238, 116) then
+	elseif child.ImageRectSize == Vector2.new(77.5, 78.5) and child.ImageRectOffset == Vector2.new(404, 119) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
 				task.wait((child.Position.Y.Scale-0.069)/distancePerSecond)
