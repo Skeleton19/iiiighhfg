@@ -203,7 +203,7 @@ local function notesAdded(child)
 				keyrelease(0x25) -- Left 
 			end
 		end)
-	elseif child.ImageRectSize == Vector2.new(77.5, 78.5) and child.ImageRectOffset == Vector2.new(404, 119) then
+	elseif child.ImageRectSize == Vector2.new(77, 78.5) and child.ImageRectOffset == Vector2.new(80, 120) then
 		delay(realTime, function()
 			if child.Position.Y.Scale >= 0.069 then
 				task.wait((child.Position.Y.Scale-0.069)/distancePerSecond)
