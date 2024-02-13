@@ -8,7 +8,6 @@ local function esp(v)
 						v.Character:FindFirstChild("Highlight"):Destroy()
 					end
 					hight = Instance.new("Highlight", v.Character)
-					hight.OutlineColor = v.TeamColor.Color
 					hight.FillTransparency = 1
 					if not v.Character:FindFirstChild("BillboardGui") then
 						local bill = Instance.new("BillboardGui", v.Character)
@@ -52,11 +51,3 @@ local function esp(v)
 		end)
 	end)
 end
-
-spawn(function()
-	while wait(2) do
-		for i, v in pairs(game:GetService("Players"):GetChildren()) do
-			esp(v)
-		end
-	end
-end)
