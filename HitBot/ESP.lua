@@ -8,6 +8,7 @@ local function esp(v)
 						v.Character:FindFirstChild("Highlight"):Destroy()
 					end
 					hight = Instance.new("Highlight", v.Character)
+					hight.OutlineColor = v.TeamColor.Color
 					hight.FillTransparency = 1
 					if not v.Character:FindFirstChild("BillboardGui") then
 						local bill = Instance.new("BillboardGui", v.Character)
