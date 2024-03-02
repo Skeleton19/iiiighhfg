@@ -52,3 +52,11 @@ local function esp(v)
 		end)
 	end)
 end
+
+spawn(function()
+	while wait(2) do
+		for i, v in pairs(game:GetService("Players"):GetChildren()) do
+			esp(v)
+		end
+	end
+end)
