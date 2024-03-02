@@ -9,23 +9,25 @@ local window = UI:Window("By kipr987")
 local nif = UI:Notification("Welcome to", game:GetService("Players").LocalPlayer.Name, "Okay!")
 local hitbox = window:Tab("Hitbox")
 local esp = window:Tab("Esp")
+local player = window:Tab("LocalPlayer")
 local setting = window:Tab("Setting")
 setting:Label("Gui Open/Close [H]")
 game:GetService("UserInputService").InputBegan:Connect(function(key, event)
 	if event then return end
-    pcall(function()
-	if key.KeyCode == Enum.KeyCode.H then
-		if game:GetService("CoreGui").ui.Enabled == false then
-			game:GetService("CoreGui").ui.Enabled = true
-		else
-			game:GetService("CoreGui").ui.Enabled = false
+	pcall(function()
+		if key.KeyCode == Enum.KeyCode.H then
+			if game:GetService("CoreGui").ui.Enabled == false then
+				game:GetService("CoreGui").ui.Enabled = true
+			else
+				game:GetService("CoreGui").ui.Enabled = false
+			end
 		end
-	end
-    end)
+	end)
 end)
 _G.torso = false
 _G.head = false
 _G.hitSize = 5
+_G.Speedif = false
 hitbox:Toggle("Torso", false, function(value)
 	_G.torso = value
 end)
@@ -37,6 +39,23 @@ hitbox:Slider("Size", 0, 50, 5, function(value)
 end)
 esp:Toggle("Esp", false, function(value)
 	_G.Esp = value
+end)
+player:Toggle("On/Off", false, function(value)
+	_G.Speedif = value
+end)
+_G.Speed = 16
+local speed = player:Slider("WalkSpeed", 0, 100, 16, function(value)
+	_G.Speed = value
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+	pcall(function()
+		if _G.Speedif == true then
+			game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = _G.Speed 
+		else
+			game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = 16
+		end
+	end)
 end)
 
 game:GetService("RunService").RenderStepped:Connect(function()
