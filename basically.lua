@@ -38,10 +38,10 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 arrowNotes = {
-    ["Arrow2"] = 'Z',
-    ["Arrow1"] = 'X',
-    ["Arrow4"] = 'Semicolon',
-    ["Arrow3"] = 'Quote'
+    ["Arrow2"] = 'X',
+    ["Arrow1"] = 'Z',
+    ["Arrow4"] = 'Quote',
+    ["Arrow3"] = 'Semicolon'
 }
 
 function getSide()
