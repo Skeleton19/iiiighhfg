@@ -23,6 +23,9 @@ local keys = {"A","S","W","D"}
 local miss = {
     "rbxassetid://16660065846",
     "rbxassetid://12884744557",
+    "rbxassetid://14712742603",
+    "rbxassetid://14712745721",
+    "rbxassetid://6977329636"
 }
 local first = true
 local connect
@@ -197,7 +200,13 @@ ap:AddToggle('MyToggle', {
     Tooltip = 'Turns off/on autoplay', -- Information shown when you hover over the toggle
 
     Callback = function(Value)
-        if Value == true then
+        
+    end
+    })
+
+
+Toggles.MyToggle:OnChanged(function()
+    if Toggles.MyToggle.Value == true then
             con1 = rgui.ChildAdded:Connect(function(d)
                 if igra == false then
                     if d.Name == "JudgementLabels" then
@@ -242,8 +251,7 @@ ap:AddToggle('MyToggle', {
                 vim:SendKeyEvent(0,Enum.KeyCode.S,0,nil)
             end
         end
-    end
-    })
+end)
 
 
 
@@ -251,9 +259,11 @@ ap:AddToggle('MyToggle', {
 local Depbox = ap:AddDependencyBox();
 Depbox:AddToggle('DepboxToggle', { Text = 'Modchart toggle',Default = false,
     Callback = function(Value)
-        _G.mod = Value
     end
 });
+Toggles.DepboxToggle:OnChanged(function()
+    _G.mod = Toggles.DepboxToggle.Value
+end)
 
 
 local SubDepbox = Depbox:AddDependencyBox();
@@ -279,32 +289,36 @@ SubDepbox:SetupDependencies({
     { Toggles.DepboxToggle, true }
 });
 
+ap:AddLabel('Autoplay keybind'):AddKeyPicker('KeyPicker', {
+    Default = 'U', -- String as the name of the keybind (MB1, MB2 for mouse buttons)
+    SyncToggleState = false,
 
+    Mode = 'Toggle', -- Modes: Always, Toggle, Hold
 
+    Text = '', -- Text to display in the keybind menu
+    NoUI = false, -- Set to true if you want to hide from the Keybind menu,
+    Callback = function(Value)
+        Toggles.MyToggle:SetValue(Value)
+    end,
 
+    ChangedCallback = function(New)
+    end
+})
+ap:AddLabel('Modchart keybind'):AddKeyPicker('KeyPicker', {
+    Default = 'P', -- String as the name of the keybind (MB1, MB2 for mouse buttons)
+    SyncToggleState = false,
 
+    Mode = 'Toggle', -- Modes: Always, Toggle, Hold
 
+    Text = '', -- Text to display in the keybind menu
+    NoUI = false, -- Set to true if you want to hide from the Keybind menu,
+    Callback = function(Value)
+        Toggles.DepboxToggle:SetValue(Value)
+    end,
 
-Library:SetWatermarkVisibility(false)
-
-local FrameTimer = tick()
-local FrameCounter = 0;
-local FPS = 60;
-
-local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(function()
-    FrameCounter += 1;
-
-    if (tick() - FrameTimer) >= 1 then
-        FPS = FrameCounter;
-        FrameTimer = tick();
-        FrameCounter = 0;
-    end;
-
-    Library:SetWatermark(('LinoriaLib demo | %s fps | %s ms'):format(
-        math.floor(FPS),
-        math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
-    ));
-end);
+    ChangedCallback = function(New)
+    end
+})
 
 Library.KeybindFrame.Visible = true; -- todo: add a function for this
 
