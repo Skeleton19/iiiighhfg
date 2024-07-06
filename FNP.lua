@@ -207,26 +207,54 @@ ap:AddToggle('MyToggle', {
 
 Toggles.MyToggle:OnChanged(function()
     if Toggles.MyToggle.Value == true then
-            con1 = rgui.ChildAdded:Connect(function(d)
-                if igra == false then
-                    if d.Name == "JudgementLabels" then
-                        igra = true
-                        debounce = true
-                        local nota
-                        task.wait(1)
-                        local side = getside(d)
-                        if side == "left" then
+        if igra == true then
+            local side = getside(rgui.JudgementLabels)
+            if side == "left" then
                             nota = lnotes
                         else
                             nota = rnotes
                         end
                         play(nota)
-                        task.delay(2,function()
-                            debouce = false
-                        end)
+        end
+            if not rgui:FindFirstChild("JudgementLabels") then
+                con1 = rgui.ChildAdded:Connect(function(d)
+                    if igra == false then
+                        if d.Name == "JudgementLabels" then
+                            igra = true
+                            debounce = true
+                            local nota
+                            task.wait(1)
+                            local side = getside(d)
+                            if side == "left" then
+                                nota = lnotes
+                            else
+                                nota = rnotes
+                            end
+                            play(nota)
+                            task.delay(2,function()
+                                debouce = false
+                            end)
+                        end
                     end
-                end
-            end)
+                end)
+            else
+                if igra == false then
+                            igra = true
+                            debounce = true
+                            local nota
+                            task.wait(1)
+                            local side = getside(rgui.JudgementLabels)
+                            if side == "left" then
+                                nota = lnotes
+                            else
+                                nota = rnotes
+                            end
+                            play(nota)
+                            task.delay(2,function()
+                                debouce = false
+                            end)
+                    end
+            end
             con2 = rgui.ChildRemoved:Connect(function(d)
                 if igra == true and debouce == false then
                     igra = false
@@ -239,16 +267,17 @@ Toggles.MyToggle:OnChanged(function()
                 end
             end)
         else
-            if con1 then con1:Disconnect() end
-            if con2 then con2:Disconnect() end
             if igra == true then
-                igra = false
+                if con1 then con1:Disconnect() end
                 if connect then connect:Disconnect() end
-                first = true
                 vim:SendKeyEvent(0,Enum.KeyCode.A,0,nil)
                 vim:SendKeyEvent(0,Enum.KeyCode.D,0,nil)
                 vim:SendKeyEvent(0,Enum.KeyCode.W,0,nil)
                 vim:SendKeyEvent(0,Enum.KeyCode.S,0,nil)
+            else
+                if con1 then con1:Disconnect() end
+                if con2 then con2:Disconnect() end
+                first = true
             end
         end
 end)
