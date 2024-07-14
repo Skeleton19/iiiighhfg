@@ -5,7 +5,7 @@ _G.autoplay = true
 vim = cloneref(game:GetService("VirtualInputManager"))
 
 
-buttons = {"A","S","W","D"}
+buttons = {"F","G","H","J"}
 
 local module = require(game.ReplicatedStorage.Modules.Note)
 local gamemodule = require(game.ReplicatedStorage.Modules.Conductor)
