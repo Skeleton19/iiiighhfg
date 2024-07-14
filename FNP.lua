@@ -30,7 +30,7 @@ local o
 o = hookfunction(func, function(...)
     local args = {...}
     for _,arg in pairs(args) do
-        if type(arg) == "table" and arg["MustPress"] and arg["CanBeHit"] == true then
+        if type(arg) == "table" and arg["MustPress"] == true and arg["shouldPress"] == true then
             --print(chet,arg["NoteData"],arg['Side'],arg['IsSustain'],arg['StrumTime'],gamemodule.SongPos)
             if _G.autoplay == true then
                 event:Fire(arg["NoteData"],arg["StrumTime"])
